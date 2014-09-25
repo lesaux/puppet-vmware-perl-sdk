@@ -30,7 +30,7 @@ ensure_packages(['gcc','uuid','uuid-dev','libssl-dev','perl-doc','liburi-perl','
   exec {"vmware_unzip":
     cwd     => '/opt/vmware/installer',
     command => '/bin/tar -xvzpf /opt/vmware/installer/VMware-vSphere-Perl-SDK-5.5.0-1384587.x86_64.tar.gz',
-    unless  => '/usr/bin/test -f /opt/vmware/installer/vmware-vsphere-cli-distrib',
+    unless  => '/usr/bin/test -d /opt/vmware/installer/vmware-vsphere-cli-distrib',
     require =>  File['/opt/vmware/installer/VMware-vSphere-Perl-SDK-5.5.0-1384587.x86_64.tar.gz' ],
   }
 
