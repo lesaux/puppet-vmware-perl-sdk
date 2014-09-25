@@ -36,8 +36,15 @@ ensure_packages(['gcc','uuid','uuid-dev','libssl-dev','perl-doc','liburi-perl','
 
   exec {"cpan_libwww-perl-5.837":
     command => '/usr/bin/cpan GAAS/libwww-perl-5.837.tar.gz',
-    unless  => '/usr/bin/test -f /opt/vmware/installer/vmware-vsphere-cli-distrib',
+    unless  => '/usr/bin/test -f /sources/authors/id/G/GA/GAAS/libwww-perl-5.837.tar.gz',
   }
 
+
+  exec {"vmware_install":
+    cwd     => '/opt/vmware/installer/vmware-vsphere-cli-distrib',
+    command => '/opt/vmware/installer/vmware-vsphere-cli-distrib/vmware-install.pl --default EULA_AGREED=yes --prefix=/opt/vmware',
+    unless  => '/usr/bin/test -d /opt/vmware/bin',
+    require =>  [Exec['vmware_unzip'],Exec['cpan_libwww-perl-5.837']],
+  }
 
 }
