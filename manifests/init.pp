@@ -3,6 +3,10 @@ class vmware-perl-sdk {
 case $::operatingsystem {
     'Debian', 'Ubuntu': {
       ensure_packages(['gcc','uuid','uuid-dev','libssl-dev','perl-doc','liburi-perl','libxml-libxml-perl','libcrypt-ssleay-perl'])
+      exec {"cpan_libwww-perl-5.837":
+        command => '/usr/bin/cpan GAAS/libwww-perl-5.837.tar.gz',
+        unless  => '/usr/bin/test -f /sources/authors/id/G/GA/GAAS/libwww-perl-5.837.tar.gz',
+      }
     }
     'Fedora', 'RedHat', 'CentOS', 'OEL', 'OracleLinux', 'Amazon': {
       ensure_packages(['gcc','perl-CPAN','uuid','uuid-devel','openssl-devel','perl-URI','perl-libxml-perl','perl-Net-SSLeay'])
@@ -45,10 +49,6 @@ case $::operatingsystem {
     require =>  File['/opt/vmware/installer/VMware-vSphere-Perl-SDK-5.5.0-1384587.x86_64.tar.gz' ],
   }
 
-  exec {"cpan_libwww-perl-5.837":
-    command => '/usr/bin/cpan GAAS/libwww-perl-5.837.tar.gz',
-    unless  => '/usr/bin/test -f /sources/authors/id/G/GA/GAAS/libwww-perl-5.837.tar.gz',
-  }
 
 
   exec {"vmware_install":
