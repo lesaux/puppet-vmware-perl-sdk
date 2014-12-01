@@ -5,7 +5,7 @@ case $::operatingsystem {
       ensure_packages(['gcc','uuid','uuid-dev','libssl-dev','perl-doc','liburi-perl','libxml-libxml-perl','libcrypt-ssleay-perl'])
     }
     'Fedora', 'RedHat', 'CentOS', 'OEL', 'OracleLinux', 'Amazon': {
-      ensure_packages(['gcc','perl-CPAN','uuid','uuid-devel','openssl-devel','perl-doc','perl-URI','perl-libxml-perl','perl-Net-SSLeay'])
+      ensure_packages(['gcc','perl-CPAN','uuid','uuid-devel','openssl-devel','perl-URI','perl-libxml-perl','perl-Net-SSLeay'])
     }
     default: {
       fail('The module does not support this OS.')
