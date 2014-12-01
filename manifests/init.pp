@@ -1,6 +1,17 @@
 class vmware-perl-sdk {
 
-ensure_packages(['gcc','uuid','uuid-dev','libssl-dev','perl-doc','liburi-perl','libxml-libxml-perl','libcrypt-ssleay-perl'])
+case $::operatingsystem {
+    'Debian', 'Ubuntu': {
+      ensure_packages(['gcc','uuid','uuid-dev','libssl-dev','perl-doc','liburi-perl','libxml-libxml-perl','libcrypt-ssleay-perl'])
+    }
+    'Fedora', 'RedHat', 'CentOS', 'OEL', 'OracleLinux', 'Amazon': {
+      ensure_packages(['gcc','uuid','uuid-devel','libssl-devel','perl-doc','liburi-perl','perl-libxml-perl','perl-Net-SSLeay'])
+    }
+    default: {
+      fail('The module does not support this OS.')
+    }
+  }
+
 
   file { '/opt/vmware':
         ensure  => directory,
