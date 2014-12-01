@@ -52,7 +52,7 @@ case $::operatingsystem {
         cwd     => '/opt/vmware/installer/vmware-vsphere-cli-distrib',
         command => '/opt/vmware/installer/vmware-vsphere-cli-distrib/vmware-install.pl --default EULA_AGREED=yes --prefix=/opt/vmware',
         unless  => '/usr/bin/test -d /opt/vmware/bin',
-        require =>  [Exec['vmware_unzip'],Exec['cpan_libwww-perl-5.837']],
+        require =>  Exec['vmware_unzip'],
       }
     }
     default: {
