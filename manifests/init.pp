@@ -1,4 +1,4 @@
-class vmware-perl-sdk {
+class VMwarePerlSDK {
 
   file { '/opt/vmware':
         ensure  => directory,
