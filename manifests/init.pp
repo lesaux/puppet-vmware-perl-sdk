@@ -17,7 +17,7 @@ class vmwareperlsdk {
 
   file { '/opt/vmware/installer/VMware-vSphere-Perl-SDK-5.5.0-1384587.x86_64.tar.gz':
         ensure  => file,
-        source  => 'puppet:///modules/vmware-perl-sdk/VMware-vSphere-Perl-SDK-5.5.0-1384587.x86_64.tar.gz',
+        source  => 'puppet:///modules/vmwareperlsdk/VMware-vSphere-Perl-SDK-5.5.0-1384587.x86_64.tar.gz',
         owner    => root,
         group    => root,
         require  => File['/opt/vmware/installer'],
